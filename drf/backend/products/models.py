@@ -6,3 +6,10 @@ class Product(models.Model):
     title = models.CharField(max_length=120)
     content = models.TextField(blank=True, null=True) 
     price = models.DecimalField(max_digits=15, decimal_places=2, default=99.99)
+    
+    @property  #decorador que define que a funcao é uma propriedade do objeto
+    def sale_price(self):
+        return "%.2f" %(float(self.price)*0.8) #retorna o preço com desconto de 20%
+    
+    def get_discount(self):
+        return "122"
