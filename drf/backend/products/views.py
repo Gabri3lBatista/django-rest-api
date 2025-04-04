@@ -1,9 +1,13 @@
 from rest_framework import generics
+from rest_framework.decorators import APIView
+from rest_framework.response import Response
+
+from django.shortcuts import get_object_or_404
 
 from .models import Product
 from .serializers import ProductSerializer
 
-class ProductCreateAPIView(generics.CreateAPIView): 
+class ProductListCreateAPIView(generics.ListCreateAPIView): 
     queryset = Product.objects.all() # Define a classe ProductCreateAPIView que herda de CreateAPIView para criar novos produtos
     serializer_class = ProductSerializer # Define a classe ProductCreateAPIView que herda de CreateAPIView para criar novos produtos
     
@@ -21,4 +25,16 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     
-class ProductListAPIView()
+class ProductListAPIView():
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    
+@api_view(["GET", "POST"])
+def product_alt_view(request, *args, **kwargs):
+    method = request.method 
+    
+    if method == 'GET':
+        pass
+    
+    if method == 'POST':
+    
